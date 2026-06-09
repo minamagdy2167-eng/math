@@ -5,14 +5,19 @@ import React from 'react';
  * as you would write it on a calculator or whiteboard.
  */
 
+const VECTOR_START = '<<VEC>>';
+const VECTOR_END = '<</VEC>>';
+const OVERVECTOR_START = '<<OVER>>';
+const OVERVECTOR_END = '<</OVER>>';
+
 function formatMath(math) {
   let s = math.trim();
 
   // ── Vectors ──────────────────────────────────────────────────────────────
-  // Handle vector notation with subscripts: \vec{F_1} → F⃗_1 and \vec{M_O} → M⃗_O
-  s = s.replace(/\\vec\{([A-Za-z])_([^}]+)\}/g, '$1⃗_$2');
-  s = s.replace(/\\vec\{([^}]+)\}/g, '$1⃗');
-  s = s.replace(/\\overrightarrow\{([^}]+)\}/g, '$1⃗');
+  // Replace \vec{X} and \overrightarrow{X} with placeholders.
+  // These placeholders are rendered later as a stable arrow overlay.
+  s = s.replace(/\\vec\{([^}]+)\}/g, `${VECTOR_START}$1${VECTOR_END}`);
+  s = s.replace(/\\overrightarrow\{([^}]+)\}/g, `${OVERVECTOR_START}$1${OVERVECTOR_END}`);
 
   // ── Fractions  \frac{a}{b}  →  (a)/(b)  ────────────────────────────────
   // Iterative replacement to handle nested fracs from inside out
@@ -127,16 +132,40 @@ export default function MathRenderer({ content, className = "" }) {
   // Split on $...$ inline math tokens
   const parts = content.split(/(\$[^$]+\$)/g);
 
+  const renderMathContent = (inner, keyPrefix) => {
+    const parts = [];
+    const markerRegex = /<<(VEC|OVER)>>(.*?)<<\/\1>>/g;
+    let lastIndex = 0;
+    let match;
+
+    while ((match = markerRegex.exec(inner)) !== null) {
+      const [full, type, content] = match;
+      parts.push(inner.slice(lastIndex, match.index));
+      parts.push(
+        <span key={`vec-${keyPrefix}-${match.index}`} className="relative inline-flex items-center overflow-visible">
+          <span className="absolute left-1/2 -top-[0.9em] -translate-x-1/2 text-[0.75em] leading-none tracking-[0.03em] whitespace-nowrap pointer-events-none">
+            {type === 'OVER' ? '⟶' : '→'}
+          </span>
+          <span className="relative">{content}</span>
+        </span>
+      );
+      lastIndex = match.index + full.length;
+    }
+
+    parts.push(inner.slice(lastIndex));
+    return parts;
+  };
+
   const rendered = parts.map((part, i) => {
     if (part.startsWith('$') && part.endsWith('$')) {
       const inner = formatMath(part.slice(1, -1));
       return (
         <span
           key={i}
-          className="inline-block font-sans bg-indigo-50 text-indigo-800 px-1.5 py-0.5 rounded-md mx-0.5 text-[0.92em] font-medium"
-          style={{ fontFamily: '"Segoe UI Symbol", "Segoe UI", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif', lineHeight: 1.2 }}
+          className="inline-block font-sans bg-indigo-50 text-indigo-800 px-1.5 py-0.5 rounded-md mx-0.5 text-[0.92em] font-medium overflow-visible whitespace-nowrap"
+          style={{ fontFamily: '"Segoe UI Symbol", "Segoe UI", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif', lineHeight: 1.3 }}
         >
-          {inner}
+          {renderMathContent(inner, i)}
         </span>
       );
     }
