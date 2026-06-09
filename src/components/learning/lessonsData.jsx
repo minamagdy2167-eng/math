@@ -1218,10 +1218,19 @@ export const lessonsData = [
   }
 ];
 
+/**
+ * @param {number|string} lessonNumber
+ * @returns {object|undefined}
+ */
 export const getLesson = (lessonNumber) => {
-  return lessonsData.find(l => l.number === parseInt(lessonNumber));
+  return lessonsData.find(l => l.number === parseInt(String(lessonNumber), 10));
 };
 
+/**
+ * @param {Array<any>} completedLessons
+ * @param {Array<any>} completedExercises
+ * @returns {number}
+ */
 export const getTotalProgress = (completedLessons, completedExercises) => {
   const totalLessons = lessonsData.length;
   const totalExercises = lessonsData.reduce((sum, l) => sum + (l.exercises?.length || 0), 0);
