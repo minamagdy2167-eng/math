@@ -1,0 +1,40 @@
+{
+  "name": "UserProgress",
+  "type": "object",
+  "properties": {
+    "completed_lessons": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "default": [],
+      "description": "Array of completed lesson numbers"
+    },
+    "completed_exercises": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "description": "Array of completed exercise IDs (e.g., 'L1-E3')"
+    },
+    "bookmarked_items": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "description": "Bookmarked lessons or exercises"
+    },
+    "notes": {
+      "type": "object",
+      "default": {},
+      "description": "User notes keyed by lesson number"
+    },
+    "last_accessed_lesson": {
+      "type": "number",
+      "description": "Last accessed lesson number"
+    }
+  },
+  "required": []
+}

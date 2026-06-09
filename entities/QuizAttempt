@@ -1,0 +1,39 @@
+{
+  "name": "QuizAttempt",
+  "type": "object",
+  "properties": {
+    "lesson_number": {
+      "type": "number",
+      "description": "Lesson number for this quiz"
+    },
+    "score": {
+      "type": "number",
+      "description": "Score as percentage (0-100)"
+    },
+    "total_questions": {
+      "type": "number",
+      "description": "Total number of questions"
+    },
+    "correct_answers": {
+      "type": "number",
+      "description": "Number of correct answers"
+    },
+    "time_taken_seconds": {
+      "type": "number",
+      "description": "Time taken to complete quiz"
+    },
+    "answers": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Array of user answers"
+    }
+  },
+  "required": [
+    "lesson_number",
+    "score",
+    "total_questions",
+    "correct_answers"
+  ]
+}

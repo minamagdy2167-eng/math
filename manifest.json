@@ -1,0 +1,17 @@
+{
+  "name": "Base44 App",
+  "short_name": "Base44",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "description": "A Base44-powered learning app.",
+  "icons": [
+    {
+      "src": "https://db.com/logo_v2.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
