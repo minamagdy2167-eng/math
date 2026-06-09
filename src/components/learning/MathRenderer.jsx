@@ -133,8 +133,8 @@ export default function MathRenderer({ content, className = "" }) {
       return (
         <span
           key={i}
-          className="inline-block font-sans bg-indigo-50 text-indigo-800 px-1.5 py-0.5 rounded-md mx-0.5 text-[0.92em] leading-normal font-medium"
-          style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif' }}
+          className="inline-block font-sans bg-indigo-50 text-indigo-800 px-1.5 py-0.5 rounded-md mx-0.5 text-[0.92em] font-medium"
+          style={{ fontFamily: '"Segoe UI Symbol", "Segoe UI", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif', lineHeight: 1.2 }}
         >
           {inner}
         </span>
