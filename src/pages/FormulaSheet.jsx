@@ -541,7 +541,7 @@ const term2Formulas = [
       },
       {
         name: "Change in Momentum",
-        formula: "$\\Delta \\vec{H} = m(\\vec{V_2} - \\vec{V_1})$",
+        formula: "$\\Delta \\vec{H} = m(\\vec{V}_2 - \\vec{V}_1)$",
         description: "The change in momentum equals mass times the change in velocity. This is crucial for impact and collision problems.",
         howToUse: "Take final velocity minus initial velocity, multiply by mass. Watch signs for direction!",
         example: {
@@ -772,6 +772,7 @@ function parseVMatrix(formulaStr) {
       // Clean up each cell: remove \vec{x} → x⃗, \vec{i} → î etc.
       let c = cell.trim();
       c = c.replace(/\\vec\{i\}/g, 'î').replace(/\\vec\{j\}/g, 'ĵ').replace(/\\vec\{k\}/g, 'k̂');
+      c = c.replace(/\\vec\{([A-Za-z])_([^}]+)\}/g, '$1⃗_$2');
       c = c.replace(/\\vec\{([^}]+)\}/g, '$1⃗');
       c = c.replace(/_([a-zA-Z])/g, '$1'); // r_x → rx
       return c.trim();
@@ -808,7 +809,7 @@ function FormulaItem({ item, color }) {
           {vmatrixRows ? (
             <div className="flex flex-col items-center gap-3">
               {formulaPrefix && (
-                <p className="text-base font-semibold text-slate-700 font-mono">
+                <p className="text-base font-semibold text-slate-700 font-sans">
                   <MathRenderer content={`$${formulaPrefix}$`} />
                 </p>
               )}

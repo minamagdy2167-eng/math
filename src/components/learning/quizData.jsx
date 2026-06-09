@@ -193,12 +193,12 @@ export const quizData = {
       ]
     },
     {
-      question: "For forces $\\vec{F_1}$ and $\\vec{F_2}$ acting at the same point, the moment of resultant about O equals:",
+      question: "For forces $\\vec{F}_1$ and $\\vec{F}_2$ acting at the same point, the moment of resultant about O equals:",
       options: [
-        "$\\vec{M_1} \\times \\vec{M_2}$",
-        "$\\vec{M_1} + \\vec{M_2}$",
-        "$\\vec{M_1} - \\vec{M_2}$",
-        "$||\\vec{M_1}|| + ||\\vec{M_2}||$"
+        "$\\vec{M}_1 \\times \\vec{M}_2$",
+        "$\\vec{M}_1 + \\vec{M}_2$",
+        "$\\vec{M}_1 - \\vec{M}_2$",
+        "$||\\vec{M}_1|| + ||\\vec{M}_2||$"
       ],
       correct: "B",
       explanation: [

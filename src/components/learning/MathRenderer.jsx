@@ -9,6 +9,8 @@ function formatMath(math) {
   let s = math.trim();
 
   // ── Vectors ──────────────────────────────────────────────────────────────
+  // Handle vector notation with subscripts: \vec{F_1} → F⃗_1 and \vec{M_O} → M⃗_O
+  s = s.replace(/\\vec\{([A-Za-z])_([^}]+)\}/g, '$1⃗_$2');
   s = s.replace(/\\vec\{([^}]+)\}/g, '$1⃗');
   s = s.replace(/\\overrightarrow\{([^}]+)\}/g, '$1⃗');
 
@@ -131,7 +133,8 @@ export default function MathRenderer({ content, className = "" }) {
       return (
         <span
           key={i}
-          className="inline-block font-mono bg-indigo-50 text-indigo-800 px-1.5 py-0.5 rounded-md mx-0.5 text-[0.92em] leading-normal font-medium"
+          className="inline-block font-sans bg-indigo-50 text-indigo-800 px-1.5 py-0.5 rounded-md mx-0.5 text-[0.92em] leading-normal font-medium"
+          style={{ fontFamily: 'Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif' }}
         >
           {inner}
         </span>
