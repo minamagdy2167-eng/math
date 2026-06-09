@@ -20,7 +20,7 @@ const term1Formulas = [
     items: [
       {
         name: "Vector Moment Formula",
-        formula: "$\\vec{M_O} = \\vec{r} \\times \\vec{F}$",
+        formula: "$\\vec{M}_O = \\vec{r} \\times \\vec{F}$",
         description: "The moment of force F⃗ about point O equals the cross product of position vector r⃗ (from O to any point on the force's line of action) and the force F⃗.",
         howToUse: "Use this when you have coordinates and want the moment vector.",
         example: {
@@ -36,7 +36,7 @@ const term1Formulas = [
       },
       {
         name: "Magnitude Formula",
-        formula: "$||\\vec{M_O}|| = F \\times L$",
+        formula: "$||\\vec{M}_O|| = F \\times L$",
         description: "The magnitude of the moment equals the force magnitude multiplied by the perpendicular distance (L) from the point to the line of action of the force.",
         howToUse: "Use this when you know the force magnitude and perpendicular distance.",
         example: {
@@ -51,7 +51,7 @@ const term1Formulas = [
       },
       {
         name: "Perpendicular Distance",
-        formula: "$L = \\frac{||\\vec{M_O}||}{||\\vec{F}||}$",
+        formula: "$L = \\frac{||\\vec{M}_O||}{||\\vec{F}||}$",
         description: "Rearranging the magnitude formula to find the perpendicular distance L from the reference point to the line of action.",
         howToUse: "Use this when you need to find how far the force line is from a point.",
         example: {

@@ -95,7 +95,7 @@ export const quizData = {
       ]
     },
     {
-      question: "If $||\\vec{M_O}|| = 5$ N·m and $||\\vec{F}|| = \\sqrt{10}$ N, what is the perpendicular distance L?",
+      question: "If $||\\vec{M}_O|| = 5$ N·m and $||\\vec{F}|| = \\sqrt{10}$ N, what is the perpendicular distance L?",
       options: [
         "$L = 5/\\sqrt{10}$",
         "$L = \\sqrt{10}/5$",
